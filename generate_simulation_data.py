@@ -11,7 +11,7 @@ def generate_power_curve(cut_in_ws,rated_ws,cut_out_ws,rated_power,diameter,Turb
     - cut_in_ws (float): The wind speed at which the turbine starts generating power (m/s).
     - rated_ws (float): The wind speed at which the turbine reaches its rated power (m/s).
     - cut_out_ws (float): The wind speed at which the turbine stops generating power (m/s).
-    - rated_power (float): The maximum power output of the turbine (kW).
+    - rated_power (float): The maximum power output of the turbine (mW).
     - diameter (float): The diameter of the turbine rotor (m).
     - Turbine (str): The name of the turbine used as the filename for saving the power curve data.
     - dt (float, optional): The step interval for wind speed (m/s). Default is 0.5 m/s.
@@ -42,13 +42,14 @@ def generate_power_curve(cut_in_ws,rated_ws,cut_out_ws,rated_power,diameter,Turb
 
     return power, velocity
 
-def generatate_power_coeffiecients(power,velocity,diameter,density=1.225):
+def generatate_power_coeffiecients(power,velocity,diameter, rho= 1.125):
     """Use power curve and """
     power_array=np.array(power)
     velocity_array=np.array(velocity)
     swept_area=math.pi*(diameter/2)**2
-    Cp = power_array / (0.5 * density * np.pi * swept_area* velocity_array**3)
+    Cp = power_array / (0.5 * rho * np.pi * swept_area* velocity_array**3)
     Cp = np.nan_to_num(Cp, nan=0.0)
+
     return Cp
 
 
@@ -83,7 +84,6 @@ def gen_simulation_Data(cut_in_ws,rated_ws,cut_out_ws,rated_power,diameter,Turbi
         'Power Output (kW)': power,
         'Thrust Coeffient' : Ct
     })
-    df.to_csv(f'{Turbine}.csv', index=False)
-    return power, velocity, Ct
-
-# gen_simulation_Data(3,12,25,8,167,'SG 8.0-167 DD')
+    # df.to_csv(f'{Turbine}.csv', index=False)
+    return df
+gen_simulation_Data(3,12,25,8,167,'SG 8.0-167 DD')
