@@ -49,9 +49,10 @@ class V236(WindTurbine): #Siemens Gamesa 8.0 MW Turbine based on Power and CT cu
 
 # Define the site object
 class Kratos(GlobalWindAtlasSite):
-
+    # check turbulance again, value is too high NREL windtoolkit, or NOW23 (National Offshore Wind 23)
+    #KIRBY says TI = 0.03-0.1 but check again
     def __init__(self, lat, lon , height, num_points, ti=0.11, roughness= 0.01, shear=None):
-        #   self.lat, self.lon = lat, lon
+          self.lat, self.lon = lat, lon
         #   self.height = height
           self.num_points = num_points
           GlobalWindAtlasSite.__init__(self, lat, lon, height, roughness, ti, shear=shear)
