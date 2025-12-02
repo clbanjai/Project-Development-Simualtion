@@ -9,7 +9,8 @@ Assumptions:
     The site is a Uniform Weibull Site with uniform sector-dependent Weibull distributed wind speed.
     No topography or roughness considerations in defining the wind resource. This is just a general wind climate, but it is good enough for noise analysis
     The site uses a user-defined layout
-    Turbines used: SG8-167
+    Turbines used: V236 - 15 MW Turbine
+    Hub Height: 150 m
     Air density : 1.225
     Turbulence Intensity: 0.11, Roughness: 0.01
 """
