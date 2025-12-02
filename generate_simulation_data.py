@@ -86,6 +86,8 @@ def gen_simulation_Data(cut_in_ws,rated_ws,cut_out_ws,rated_power,diameter,Turbi
     })
     # df.to_csv(f'{Turbine}.csv', index=False)
     return df
-data = gen_simulation_Data(3,12,25,8,167,'SG 8.0-167 DD')
-thrust = data["Thrust Coeffient"].to_list()
-print(thrust)
+
+if __name__ == "__main__":
+    data = gen_simulation_Data(3,12,25,8,167,'SG 8.0-167 DD')
+    thrust = data["Thrust Coeffient"].to_list()
+    print(thrust)
